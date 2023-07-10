@@ -33,8 +33,7 @@ func text(sb *strings.Builder, rv *reflect.Value) {
 				if len(tags) == 2 {
 					fieldName = tags[0]
 					if tags[1] == "uppercase" {
-						upper := strings.ToUpper(val.String())
-						val = reflect.ValueOf(upper)
+						val = reflect.ValueOf(strings.ToUpper(val.String()))
 					}
 				}
 			}
@@ -43,7 +42,7 @@ func text(sb *strings.Builder, rv *reflect.Value) {
 		}
 		sb.WriteString("}")
 	case reflect.String:
-		sb.WriteString("\"" + rv.String() + "\"")
+		sb.WriteString(fmt.Sprintf("%q", rv.String()))
 	case reflect.Int:
 		sb.WriteString(fmt.Sprintf("%d", rv.Int()))
 	}
